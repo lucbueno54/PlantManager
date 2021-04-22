@@ -6,8 +6,16 @@ import { Feather } from '@expo/vector-icons'
 import wateringImg from '../assets/watering.png';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts'
+import { useNavigation } from '@react-navigation/core';
 
 export function Welcome() {
+
+  const navegation = useNavigation();
+
+  function handerStart() {
+    navegation.navigate("UserIndentification");
+  }
+
   return (
     <SafeAreaView style={styles.conteiner}>
       <View style={styles.wrapper}>
@@ -20,6 +28,7 @@ export function Welcome() {
         <TouchableOpacity
           style={styles.buttom}
           activeOpacity={0.8}
+          onPress ={handerStart}
         >
 
           <Feather name="chevron-right" style={styles.icon}></Feather>
@@ -33,11 +42,11 @@ export function Welcome() {
 const styles = StyleSheet.create({
   conteiner: {
     flex: 1,
-    
+
   },
 
-  wrapper:{
-    flex:1,
+  wrapper: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
     paddingHorizontal: 20
