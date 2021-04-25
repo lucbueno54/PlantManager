@@ -1,7 +1,16 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { Text, StyleSheet, SafeAreaView, View, TextInput, KeyboardAvoidingView, Platform } from 'react-native';
+import { 
+    Text, 
+    StyleSheet, 
+    SafeAreaView, 
+    View, 
+    TextInput, 
+    KeyboardAvoidingView, 
+    Platform, 
+    TouchableNativeFeedback, 
+    Keyboard } from 'react-native';
 import { Button } from '../components/Botton';
 import colors from '../styles/colors';
 
@@ -31,8 +40,8 @@ export function UserIndentification() {
     const navegation = useNavigation();
 
     function handerSubmit() {
-        
-            navegation.navigate("Confirmetion");
+
+        navegation.navigate("Confirmetion");
     }
 
 
@@ -42,36 +51,38 @@ export function UserIndentification() {
                 style={style.container}
                 behavior={Platform.OS == 'ios' ? "padding" : 'height'}
             >
-                <View style={style.content}>
-                    <View style={style.form}>
-                        <View style={style.header}>
-                            <Text style={style.emoji}>
-                                {isFilled ? '😄' : '😃'}
-                            </Text>
-                            <Text style={style.title}>
-                                Como podemos {'\n'}
+                <TouchableNativeFeedback onPress={Keyboard.dismiss} >
+                    <View style={style.content}>
+                        <View style={style.form}>
+                            <View style={style.header}>
+                                <Text style={style.emoji}>
+                                    {isFilled ? '😄' : '😃'}
+                                </Text>
+                                <Text style={style.title}>
+                                    Como podemos {'\n'}
                                 chamar você?
                              </Text>
-                        </View>
-                        <TextInput
-                            style={[
-                                style.input,
-                                (isFocused || isFilled) && { borderColor: colors.green }
-                            ]}
-                            placeholder='Digite um nome'
-                            onBlur={TextInputOnBlur}
-                            onFocus={TextInputonFocus}
-                            onChangeText={handleImputChange}
-                        />
-                        <View style={style.footer}>
-                            <Button
-                                title='Avançar'
-                                onPress={handerSubmit}
+                            </View>
+                            <TextInput
+                                style={[
+                                    style.input,
+                                    (isFocused || isFilled) && { borderColor: colors.green }
+                                ]}
+                                placeholder='Digite um nome'
+                                onBlur={TextInputOnBlur}
+                                onFocus={TextInputonFocus}
+                                onChangeText={handleImputChange}
                             />
-                        </View>
+                            <View style={style.footer}>
+                                <Button
+                                    title='Avançar'
+                                    onPress={handerSubmit}
+                                />
+                            </View>
 
+                        </View>
                     </View>
-                </View>
+                </TouchableNativeFeedback>
             </KeyboardAvoidingView>
         </SafeAreaView>
 
